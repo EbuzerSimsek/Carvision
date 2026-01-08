@@ -1,213 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarVision – Car Identifier App for iOS | Identify Any Car Instantly</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Identify any car instantly with CarVision. AI-powered car identifier app for iPhone. Discover car models, specs, years, and details using your camera.">
-    <meta name="keywords" content="car identifier, car model identifier, carvision, identify cars, car recognition app, vehicle identifier, iOS car app">
+<title>CarVision – Car Identifier App for iOS</title>
 
-    <meta property="og:title" content="CarVision – Car Identifier App for iOS">
-    <meta property="og:description" content="Identify any car instantly using AI. Perfect for car lovers and buyers.">
-    <meta property="og:image" content="https://carvision.app/og.png">
-    <meta property="og:url" content="https://carvision.app">
-    <meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Identify any car instantly with CarVision. AI-powered car identifier app for iPhone.">
+<meta name="keywords" content="car identifier, carvision, identify cars, vehicle recognition">
 
-    <link rel="canonical" href="https://carvision.app" />
-    <link rel="icon" type="image/png" href="icon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="canonical" href="https://carvision.app">
 
-    <style>
-        /* --- SAME CSS – UNCHANGED --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #fff;
-            color: #1d1d1f;
-            overflow-x: hidden;
-        }
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(255,255,255,.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,.1);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 20px;
-            font-weight: 600;
-            color: #1d1d1f;
-            text-decoration: none;
-        }
-        .nav-logo img {
-            width: 32px; height: 32px; border-radius: 8px;
-        }
-        .nav-links { display: flex; gap: 40px; list-style: none; }
-        .nav-links a {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .nav-links a:hover { color: #0071e3; }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 140px 20px 80px;
-            background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 100%);
-            text-align: center;
-        }
-        h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
-        .tagline {
-            font-size: 24px;
-            color: #6e6e73;
-            margin-bottom: 40px;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .cta-button img {
-            width: 200px;
-            transition: transform .3s;
-        }
-        .cta-button:hover img { transform: scale(1.05); }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1d1d1f;
+    background: #fff;
+}
 
-        .btn-secondary {
-            padding: 14px 32px;
-            border: 2px solid #0071e3;
-            border-radius: 980px;
-            color: #0071e3;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .btn-secondary:hover {
-            background: #0071e3;
-            color: #fff;
-        }
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    z-index: 1000;
+}
 
-        .hero-screenshots {
-            display: flex;
-            gap: 30px;
-            margin-top: 60px;
-        }
-        .hero-screenshot-item {
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,.15);
-            width: 280px;
-        }
-        .hero-screenshot-item:nth-child(2) { width: 380px; }
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .screenshot-badge, .screenshot-rating {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255,255,255,.95);
-            padding: 10px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .screenshot-rating {
-            right: 20px; left: auto;
-        }
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #1d1d1f;
+}
 
-        .about-mountains {
-            padding: 120px 20px;
-            background: #f5f7fa;
-        }
-        .about-mountains h2 {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 30px;
-        }
-        .about-mountains p {
-            max-width: 900px;
-            margin: 0 auto 20px;
-            font-size: 18px;
-            color: #6e6e73;
-            line-height: 1.8;
-        }
+.nav-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+}
 
-        .features { padding: 120px 20px; }
-        .section-title {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        .section-subtitle {
-            text-align: center;
-            font-size: 24px;
-            color: #6e6e73;
-            margin-bottom: 60px;
-        }
-        .feature-grid {
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
-            gap: 40px;
-        }
-        .feature-card {
-            background: #f5f7fa;
-            border-radius: 20px;
-            padding: 40px;
-        }
-        footer {
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid rgba(0,0,0,.1);
-        }
-    </style>
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #1d1d1f;
+    font-size: 14px;
+}
+
+/* HERO */
+.hero {
+    padding: 140px 20px 80px;
+    min-height: 100vh;
+    text-align: center;
+    background: linear-gradient(180deg, #f5f7fa, #fff);
+}
+
+h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    font-size: 22px;
+    color: #6e6e73;
+    margin-bottom: 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button img {
+    width: 190px;
+    transition: transform .3s;
+}
+
+.cta-button:hover img {
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    padding: 14px 32px;
+    border-radius: 999px;
+    border: 2px solid #0071e3;
+    color: #0071e3;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: #0071e3;
+    color: #fff;
+}
+
+/* SCREENSHOTS */
+.hero-screenshots {
+    margin-top: 60px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-screenshot-item {
+    width: 280px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.hero-screenshot-item img {
+    width: 100%;
+    display: block;
+}
+
+.hero-screenshot-item:nth-child(2) {
+    width: 340px;
+}
+
+.screenshot-badge,
+.screenshot-rating {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.95);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.screenshot-rating {
+    left: auto;
+    right: 16px;
+}
+
+/* ABOUT */
+.about {
+    padding: 100px 20px;
+    background: #f5f7fa;
+}
+
+.about h2 {
+    text-align: center;
+    font-size: 44px;
+    margin-bottom: 30px;
+}
+
+.about p {
+    max-width: 900px;
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #6e6e73;
+    line-height: 1.7;
+}
+
+/* FEATURES */
+.features {
+    padding: 100px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 44px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6e6e73;
+    font-size: 22px;
+    margin: 20px 0 60px;
+}
+
+.feature-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: #f5f7fa;
+    border-radius: 20px;
+    padding: 32px;
+    font-size: 16px;
+}
+
+/* FOOTER */
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    color: #6e6e73;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .tagline {
+        font-size: 18px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero-screenshot-item,
+    .hero-screenshot-item:nth-child(2) {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .section-title,
+    .about h2 {
+        font-size: 32px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <nav>
     <div class="nav-container">
-        <a href="#home" class="nav-logo">
-            <img src="icon.png" alt="CarVision Logo">
+        <a class="nav-logo" href="#">
+            <img src="icon.png">
             CarVision
         </a>
         <ul class="nav-links">
-            <li><a href="#about">About Cars</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#download">Download</a></li>
         </ul>
     </div>
 </nav>
 
-<section id="home" class="hero">
+<section class="hero">
     <h1>Identify Cars. Discover Details.</h1>
-    <p class="tagline">AI-powered car identification for enthusiasts, buyers, and professionals.</p>
+    <p class="tagline">AI-powered car identification for enthusiasts and buyers.</p>
 
     <div class="cta-buttons">
-        <a href="https://apps.apple.com/tr/app/car-identifier-carvision/id6756989227?l=tr" class="cta-button">
+        <a class="cta-button" href="https://apps.apple.com/tr/app/car-identifier-carvision/id6756989227?l=tr">
             <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us">
         </a>
         <a href="#features" class="btn-secondary">Learn More</a>
@@ -216,50 +294,48 @@
     <div class="hero-screenshots">
         <div class="hero-screenshot-item">
             <span class="screenshot-rating">⭐ 4.8/5</span>
-            <img src="screenshot1.webp" alt="Car Details">
+            <img src="screenshot1.webp">
         </div>
         <div class="hero-screenshot-item">
             <span class="screenshot-badge">🚗 Instant Scan</span>
-            <img src="screenshot2.webp" alt="Car Recognition">
+            <img src="screenshot2.webp">
         </div>
         <div class="hero-screenshot-item">
-            <span class="screenshot-badge">📊 Specs & History</span>
-            <img src="screenshot3.webp" alt="Vehicle Info">
+            <span class="screenshot-badge">📊 Specs</span>
+            <img src="screenshot3.webp">
         </div>
     </div>
 </section>
 
-<section id="about" class="about-mountains">
+<section id="about" class="about">
     <h2>The World of Cars</h2>
-    <p>Cars are more than machines — they are engineering masterpieces, cultural icons, and daily companions. From classic designs to modern electric vehicles, every car tells a story.</p>
-    <p>CarVision uses advanced AI to recognize vehicles from a single photo, identifying brand, model, generation, and technical specifications.</p>
-    <p>Whether you're a car enthusiast, buyer, or just curious, CarVision turns every car you see into knowledge.</p>
+    <p>CarVision uses AI to identify vehicles from a single photo.</p>
+    <p>Discover model, year, specs, and market insights instantly.</p>
 </section>
 
 <section id="features" class="features">
     <h2 class="section-title">Powerful Features</h2>
-    <p class="section-subtitle">Everything you need to identify cars</p>
+    <p class="section-subtitle">Everything you need</p>
 
     <div class="feature-grid">
-        <div class="feature-card">📸 <h3>Instant Recognition</h3><p>Identify cars in seconds using AI.</p></div>
-        <div class="feature-card">🚘 <h3>Model & Year</h3><p>Exact model, generation, and production year.</p></div>
-        <div class="feature-card">⚙️ <h3>Technical Specs</h3><p>Engine, horsepower, drivetrain, and more.</p></div>
-        <div class="feature-card">💰 <h3>Market Value</h3><p>Estimated value and segment insights.</p></div>
-        <div class="feature-card">📚 <h3>Car Encyclopedia</h3><p>Build your own vehicle history.</p></div>
-        <div class="feature-card">💾 <h3>Saved History</h3><p>All scanned cars saved automatically.</p></div>
+        <div class="feature-card">📸 Instant recognition</div>
+        <div class="feature-card">🚘 Model & year</div>
+        <div class="feature-card">⚙️ Technical specs</div>
+        <div class="feature-card">💰 Market value</div>
+        <div class="feature-card">📚 Car encyclopedia</div>
+        <div class="feature-card">💾 Scan history</div>
     </div>
 </section>
 
 <section id="download" class="hero">
-    <h2>Start Identifying Cars Today</h2>
-    <p class="tagline">Download CarVision and unlock car knowledge instantly.</p>
-    <a href="https://apps.apple.com/tr/app/car-identifier-carvision/id6756989227?l=tr" class="cta-button">
+    <h1>Start Identifying Cars Today</h1>
+    <a class="cta-button" href="https://apps.apple.com/tr/app/car-identifier-carvision/id6756989227?l=tr">
         <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us">
     </a>
 </section>
 
 <footer>
-    <p>© 2025 CarVision. All rights reserved.</p>
+    © 2025 CarVision. All rights reserved.
 </footer>
 
 </body>
